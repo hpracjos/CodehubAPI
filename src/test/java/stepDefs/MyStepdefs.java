@@ -5,38 +5,35 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
-import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.Assert;
+import org.junit.Assert;
 
+public class MyStepdefs {
 
-public class getGreetingsStepDef {
-
-    private final RequestSpecification httpRequest = RestAssured.given().relaxedHTTPSValidation();
-    private Response response;
+    RequestSpecification request = RestAssured.given();
+    private static final String BASE_URL = "http://localhost:8083/greeting";
+    private static Response response;
 
     @Given("User define the Get call")
     public void userDefineTheGetCall() {
-        RestAssured.baseURI = "http://localhost:8081/";
+        RestAssured.baseURI = BASE_URL;
     }
 
     @When("User performs GET operation")
-    public void userPerformsGETOperation(RequestSpecification httpRequest) {
-        Response response = httpRequest.request(Method.GET, "/greeting");
-
+    public void userPerformsGETOperation() {
+        response = request.get("/greeting");
     }
 
     @Then("User is able to get response code from greetings endpoint")
-    public void userIsAbleToGetResponseCodeFromGreetingsEndpoint(Response response) {
+    public void userIsAbleToGetResponseCodeFromGreetingsEndpoint() {
         int StatusCode = response.getStatusCode();
-        Assert.assertEquals(StatusCode, 200, "Expected Status code returned");
+        Assert.assertEquals(StatusCode, 200);
         System.out.println("Response Body is =>  " + StatusCode);
-
     }
 
     @And("User validates the response body of greetings endpoint")
-    public void userValidatesTheResponseBodyOfGreetingsEndpoint(Response response) {
+    public void userValidatesTheResponseBodyOfGreetingsEndpoint() {
         String responseBody = response.getBody().asString();
         String responseBody1 = response.getBody().prettyPrint();
         System.out.println("Response Body is =>  " + responseBody);

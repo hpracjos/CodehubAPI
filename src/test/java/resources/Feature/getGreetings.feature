@@ -1,5 +1,4 @@
 Feature: Get greeting
-
   Scenario: Trigger GET API and get greeting with id
     Given User define the Get call
     When  User performs GET operation
