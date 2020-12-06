@@ -31,6 +31,6 @@ public class getGreetings {
     @Then("User validates the response body of greetings endpoint")
     public void user_validates_the_response_body_of_greetings_endpoint() {
        String responseBody = response.getBody().prettyPrint();
-       System.out.println("Response Body 1 is =>  " + responseBody);
+       System.out.println("Response Body is =>  " + responseBody);
     }
 }
