@@ -7,3 +7,13 @@ GET - "http://localhost:8081/greeting"
 Output : {"id":1,"content":"Hello, World!"}
 GET - "http://localhost:8081/greeting?name=prachi"
 Output : {"id":2,"content":"Hello, prachi!"}
+
+
+Docker - https://spring.io/guides/gs/spring-boot-docker/
+
+Create JAR with maven - https://spring.io/guides/gs/maven/
+Run  locally : mvn te mvn complie , mvn package , java -jar target/CodehubAPI-1.0-SNAPSHOT.jar
+Docker File Build in project folder -   docker build -t springio/gs-spring-boot-docker .
+Docker Run : docker run -p 8080:8083 springio/gs-spring-boot-docker
+Find command for Cucumber Mvn terminal
+$ mvn clean test -Dcucumber.options="src/test/java/appFeatures"
